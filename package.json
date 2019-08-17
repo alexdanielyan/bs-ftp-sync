@@ -1,6 +1,6 @@
 {
     "name": "bs-ftp-sync",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Sync templates over ftp",
     "main": "index.js",
     "scripts": {
