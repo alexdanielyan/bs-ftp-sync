@@ -1,0 +1,29 @@
+{
+    "name": "bs-ftp-sync",
+    "version": "1.0.0",
+    "description": "Sync templates over ftp",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:team5ru/bs-ftp-sync.git"
+    },
+    "keywords": [
+        "browser",
+        "sync"
+    ],
+    "author": "Alexander Danielyan",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/team5ru/bs-ftp-sync/issues"
+    },
+    "homepage": "https://github.com/team5ru/bs-ftp-sync/",
+    "dependencies": {
+        "ftp": "^0.3.10"
+    },
+    "devDependencies": {
+        "browser-sync": "^2.26.7"
+    }
+}
