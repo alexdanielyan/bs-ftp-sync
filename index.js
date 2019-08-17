@@ -4,11 +4,20 @@ const chokidar = require("chokidar");
 
 module.exports.plugin = ftpSync;
 
+var defaultIgnorePatterns = [
+    /node_modules/,
+    /bower_components/,
+    '.sass-cache',
+    '.vscode',
+    '.git',
+    '.idea',
+];
+
 function ftpSync(params) {
     const config = Object.assign({
         files: '**/*.(php|twig)',
         watchOptions: {
-            ignored: 'node_modules',
+            ignored: defaultIgnorePatterns,
             ignoreInitial: true,
         }
     }, params);
