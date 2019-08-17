@@ -8,7 +8,7 @@ Config example
     files: ['**/*.(js|css)'],
     plugins: [
         {
-            module: require('./bs-ftp-sync'),
+            module: require('bs-ftp-sync'),
             options: {
                 files: '**/*.(php|twig)',
                 host: 'your-host',
