@@ -3,7 +3,7 @@ This is BrowserSync plugin. It uploads backend rendered files over ftp, while us
 Config example
 ```
 ...
-.browserSync{
+.browserSync({
     proxy: 'http://your-website',
     files: ['**/*.(js|css)'],
     plugins: [
