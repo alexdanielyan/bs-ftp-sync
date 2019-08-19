@@ -4,7 +4,7 @@ const chokidar = require("chokidar");
 
 module.exports.plugin = ftpSync;
 
-var defaultIgnorePatterns = [
+const defaultIgnorePatterns = [
     /node_modules/,
     /bower_components/,
     '.sass-cache',
@@ -12,6 +12,7 @@ var defaultIgnorePatterns = [
     '.git',
     '.idea',
 ];
+
 
 function ftpSync(params) {
     const config = Object.assign({
@@ -21,26 +22,31 @@ function ftpSync(params) {
             ignoreInitial: true,
         }
     }, params);
-
-    const client = new Client();
     
-    client.connect({
-        host: config.host,
-        user: config.user,
-        password: config.password,
-    });
     
     function upload(file, event) {
-        client.put(file, config.path + file, function(e) {
-            if (e && e.code === 550) {
-                client.mkdir(dirname(config.path + file), true, function(e) {
-                    if (!e) { upload(file, event); }
-                });
-            } else {
-                const FgGreen = "\x1b[32m";
-                const Reset = "\x1b[0m"
-                console.log(`[${FgGreen}Ftpsync${Reset}] ${file} uploaded`);
-            }
+        const client = new Client();
+        
+        client.on('ready', function() {
+            client.put(file, config.path + file, function(e) {
+                if (e && e.code === 550) {
+                    client.mkdir(dirname(config.path + file), true, function(e) {
+                        if (!e) { upload(file, event); }
+                    });
+                } else {
+                    const FgGreen = "\x1b[32m";
+                    const Reset = "\x1b[0m"
+                    console.log(`[${FgGreen}Ftpsync${Reset}] ${file} uploaded`);
+                }
+            });
+
+            client.end();
+        })
+
+        client.connect({
+            host: config.host,
+            user: config.user,
+            password: config.password,
         });
     }
 
